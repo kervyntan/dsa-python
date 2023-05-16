@@ -40,7 +40,7 @@ def naiveTraverseSingly():
         print(current.data)
         current = current.next
 
-naiveTraverseSingly()
+# naiveTraverseSingly()
 
 def improvedTraverseSingly(self):
     current = self.head
@@ -54,6 +54,53 @@ def improvedTraverseSingly(self):
 
     # Inserting data item
 
+
+class NaiveSinglyLinkedList:
+    def __init__(self):
+        self.head = None
+        self.size = 0
+    
+
+    def append(self, data):
+        node = Node(data)
+        if self.head is None:
+            self.head = node
+        else:
+            current = self.head
+            while current.next:
+                current = current.next
+                print("appended")
+            current.next = node
+
+words = NaiveSinglyLinkedList()
+words.append("eggs")
+words.append("ham")
+words.append("spam")
+
+class SinglyLinkedList():
+    def __init__(self):
+        self.tail = None
+        self.head = None
+        self.size = 0
+
+    def append(self, data):
+        node = Node(data)
+        if self.tail:
+            self.tail.next = node
+            self.tail = node
+        else:
+            self.head = node
+            self.tail = node 
+
+words = SinglyLinkedList()
+words.append("eggs")
+words.append("ham")
+words.append("spam")
+current = words.head
+
+while current:
+    print(current.data)
+    current = current.next
     # Deleting data item
 
         
