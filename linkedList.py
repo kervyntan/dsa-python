@@ -90,7 +90,73 @@ class SinglyLinkedList():
             self.tail = node
         else:
             self.head = node
-            self.tail = node 
+            self.tail = node
+
+    def iter(self):
+        current = self.head
+        while current:
+            val = current.data
+            current = current.next
+            yield val
+
+    def append_at_location(self, data, index):
+        # We start from the first node 
+        # "current" pointer moves to the index position where we want to add a new element
+        current = self.head
+        prev = self.head
+        # Node to be inserted
+        node = Node(data) 
+        count = 1
+        while current:
+            if index == 1:
+                node.next = current
+                self.head = node
+                print("Count is " + count)
+                return
+            # Have we reached the required index
+            elif count == index:
+                node.next = current
+                prev.next = node
+                return
+            count += 1
+            prev = current
+            current = current.next
+        if count < index:
+            print("The list has less number of elements") 
+
+    def deleteFirst(self):
+        current = self.head
+
+        if self.head is None:
+            print("No data element to be deleted")
+        elif current == self.head:
+            self.head = current.next
+    
+    def deleteEnd(self):
+        current = self.head
+        prev = self.head
+        while current:
+            if current.next is None:
+                prev.next = current.next
+                self.size -= 1
+            prev = current
+            current = current.next
+
+    def search(self, data):
+        for nodeData in self.iter():
+            if data == nodeData:
+                return True
+        return False
+    
+    def length(self):
+        self.size = 0
+        current = self.head
+
+        while current:
+            self.size += 1
+            current = current.next
+        
+        return self.size
 
 words = SinglyLinkedList()
 words.append("eggs")
@@ -98,9 +164,16 @@ words.append("ham")
 words.append("spam")
 current = words.head
 
+words.append_at_location('new', 2)
+current = words.head
 while current:
     print(current.data)
     current = current.next
     # Deleting data item
 
-        
+print(words.search('eggs'))
+words.deleteFirst()
+print(words.length())
+print(words.length())
+words.deleteEnd()
+print(words.length())        
