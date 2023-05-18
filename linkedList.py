@@ -133,14 +133,18 @@ class SinglyLinkedList():
             self.head = current.next
     
     def deleteEnd(self):
+        # Two pointers -> one to the last node, one to the node before that
         current = self.head
         prev = self.head
+
         while current:
+            # When current reaches the last node 
             if current.next is None:
                 prev.next = current.next
                 self.size -= 1
             prev = current
             current = current.next
+
 
     def search(self, data):
         for nodeData in self.iter():
