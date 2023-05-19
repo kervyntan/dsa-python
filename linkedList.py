@@ -124,6 +124,7 @@ class SinglyLinkedList():
         if count < index:
             print("The list has less number of elements") 
 
+    # Deleting data item
     def deleteFirst(self):
         current = self.head
 
@@ -145,6 +146,26 @@ class SinglyLinkedList():
             prev = current
             current = current.next
 
+    # Function is not 0-indexed 
+    def deleteAtPosition(self, index):
+        # Two pointers -> one to the the node you want to delete, one to the node before that
+        current = self.head
+        prev = self.head
+        # set up a counter to determine when index is reached
+        count = 1
+        print(self.length())
+        if (index > self.length()):
+            print("Index out of bounds of list")
+
+        while current:
+            if count == index:
+                # Once reached the desired position
+                prev.next = current.next
+                self.size -= 1
+            
+            prev = current
+            current = current.next
+            count += 1
 
     def search(self, data):
         for nodeData in self.iter():
@@ -173,11 +194,9 @@ current = words.head
 while current:
     print(current.data)
     current = current.next
-    # Deleting data item
 
 print(words.search('eggs'))
-words.deleteFirst()
+# words.deleteFirst()
+words.deleteAtPosition(2)
 print(words.length())
-print(words.length())
-words.deleteEnd()
-print(words.length())        
+     
